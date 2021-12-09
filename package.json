@@ -1,0 +1,36 @@
+{
+  "name": "technical-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "nodemon": "nodemon dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dauniusha/Technical-task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dauniusha/Technical-task/issues"
+  },
+  "homepage": "https://github.com/Dauniusha/Technical-task#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.1.0",
+    "net": "^1.0.2",
+    "ts-node": "^10.1.0",
+    "ws": "^7.5.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.3.3",
+    "@types/ws": "^7.4.6",
+    "nodemon": "^2.0.12",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.5"
+  }
+}
