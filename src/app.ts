@@ -4,11 +4,12 @@ import WebSocket from 'ws';
 import mongoose from 'mongoose';
 
 import setting from './setting';
+import SocketServer from './controllers/web-socket';
 
 const app = express();
 const server = http.createServer(app);
 
-const webSocketServer = new WebSocket.Server({ server });
+const webSocketServer = new SocketServer(server);
 
 app.use('/', (req, res) => res.send('<h1>Hello</h1>'));
 
