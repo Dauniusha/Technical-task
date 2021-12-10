@@ -29,7 +29,7 @@ export default class SocketServer {
             const connection = new Connection({ socket_id });
             connection.save(() => console.log('Client saved, id:', socket_id));
 
-            client.socket.send('connected');
+            client.socket.send(JSON.stringify({ type: 'common', message: 'connected' }));
 
             this.initSocketListners(client);
         });
@@ -41,7 +41,11 @@ export default class SocketServer {
 
     private initHandlers() {
         return {
-            [ Type.state ]: (options: HandlerOprions) => options.client?.socket.send(String(this.clients.length)),
+            [ Type.state ]: (options: HandlerOprions) => options.client?.socket.send(
+                JSON.stringify({
+                    type: 'status',
+                    message: this.clients.length
+                })),
             [ Type.message ]: (options: HandlerOprions) => this.addMessage(options),
             [ Type.common ]: (options: HandlerOprions) => console.log('Common message:', options.data),
         };
@@ -59,18 +63,27 @@ export default class SocketServer {
         socket.on('close', async () => {
             this.clients = this.clients.filter((data) => data !== client);
             
-            await new Promise<void>((resolve) => DBMessage.deleteMany(
+            await new Promise<void>((resolve, reject) => DBMessage.deleteMany(
                     { socket_id: client.socket_id },
-                    () => {
+                    (err: Error, result: any) => {
+                        if (err) {
+                            reject(err);
+                        };
+                        
                         console.log('Messages deleted, socket_id:', client.socket_id);
+                        console.log(result);
                         resolve();
                     }
                 )
             );
 
-            await new Promise<void>((resolve) => Connection.deleteOne(
+            await new Promise<void>((resolve, reject) => Connection.deleteOne(
                     { socket_id: client.socket_id },
-                    () => {
+                    (err: Error) => {
+                        if (err) {
+                            reject(err);
+                        };
+
                         console.log('Connection deleted, socket_id:', client.socket_id);
                         resolve();
                     }

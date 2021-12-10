@@ -1,6 +1,5 @@
 import express from 'express';
 import http from 'http';
-import WebSocket from 'ws';
 import mongoose from 'mongoose';
 
 import setting from './setting';
