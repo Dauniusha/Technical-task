@@ -1,7 +1,7 @@
 class Factory {
     createElem(className) {
         const elem = document.createElement('div');
-        elem.classList.add(className);
+        elem.classList.add(...className);
 
         return elem;
     };
@@ -10,7 +10,7 @@ class Factory {
         const input = document.createElement('input');
         input.type = 'text';
         input.value = initValue;
-        input.classList.add(className);
+        input.classList.add(...className);
 
         return input;
     };

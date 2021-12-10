@@ -1,3 +1,3 @@
-import App from "./models/app";
+import App from "./models/app.js";
 
 const app = new App();
