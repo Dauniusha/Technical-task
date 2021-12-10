@@ -10,6 +10,8 @@ const server = http.createServer(app);
 
 const webSocketServer = new WebSocket.Server({ server });
 
+app.use('/', (req, res) => res.send('<h1>Hello</h1>'));
+
 async function init() {
     try {
         await mongoose.connect(setting.mongoUri);
