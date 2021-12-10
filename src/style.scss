@@ -1,0 +1,44 @@
+.container {
+    margin: 5vh auto 0;
+    max-width: 500px;
+    padding: 0 5%;
+    display: flex;
+    font-size: 20px;
+    color: #333;
+    justify-content: space-between;
+    align-items: center;
+    
+    .message {
+        box-sizing: border-box;
+        font-size: 20px;
+        padding: 5px;
+        width: 45%;
+        border-radius: 5px;
+        border: 2px solid #333;
+        background-color: #fff;
+        height: 32px;
+        outline: none;
+    }
+
+    .btn {
+        padding: 1vh 2vh;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        background-color: salmon;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #333;
+        cursor: pointer;
+        text-shadow: 1px 1px 1px #333;
+        user-select: none;
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .connect-btn {
+        width: 80px;
+    }
+}
