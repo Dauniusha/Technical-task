@@ -18,6 +18,7 @@ export default class App {
         this.sendBtn = factory.createElem(['btn', 'send-btn']);
         this.sendBtn.innerHTML = 'Send';
         this.container.appendChild(this.sendBtn);
+        this.sendBtn.addEventListener('click', () => this.send('message', this.input.value));
 
         this.connectBtn = factory.createElem(['btn', 'connect-btn']);
         this.connectBtn.innerHTML = 'Disconnect';
@@ -46,9 +47,9 @@ export default class App {
     createSocketConnection() {
         this.webSocket = new WebSocket('ws://localhost:3000');
 
-        this.webSocket.addEventListener('message', (message) => {
-            const { type, data } = { type: 'common', data: message.data }// JSON.parse(message.data);
-            this.handlers[type](data);
+        this.webSocket.addEventListener('message', (res) => {
+            const { type, message } = JSON.parse(res.data);
+            this.handlers[type](message);
         });
 
         this.webSocket.addEventListener('close', () => {
