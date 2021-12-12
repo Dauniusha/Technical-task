@@ -45,7 +45,7 @@ export default class App {
     };
 
     createSocketConnection() {
-        this.webSocket = new WebSocket('ws://35.239.44.29:3000');
+        this.webSocket = new WebSocket('wss://35.239.44.29:3000');
 
         this.webSocket.addEventListener('message', (res) => {
             const { type, message } = JSON.parse(res.data);
